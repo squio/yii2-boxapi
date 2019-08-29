@@ -1,0 +1,27 @@
+{
+    "name": "squio/boxapi",
+    "description": "Box API 2.0 for Standard User",
+    "keywords": ["box", "boxapi", "yii2"],
+    "license": "MIT",
+    "type": "library",
+    "homepage": "http://squio.nl",
+    "require": {
+        "php": ">=5.4",
+        "yiisoft/yii2": "~2.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^4.8"
+    },
+    "authors": [
+        {
+            "name": "Johannes la Poutre",
+            "email": "info@squio.nl"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "squio\\boxapi\\": "src"
+        }
+    },
+    "minimum-stability": "dev"
+}
