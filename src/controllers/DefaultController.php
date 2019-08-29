@@ -4,21 +4,20 @@ namespace squio\boxapi\controllers;
 
 use yii\web\Controller;
 use yii\helpers\Url;
-use squio\boxapi\traits\BoxContent;
+
 /**
  * Default controller for the `boxapi` module
  */
 class DefaultController extends Controller
 {
-    use BoxContent;
 
     /**
-     * Renders the index view for the module
-     * @return string
+     * Process callback from Box OAuth
+     * Redirect to last local url if set
+     * @return redirect
      */
     public function actionIndex()
     {
-        $module = \Yii::$app->controller->module->id;
         $res = false;
         if (isset($_GET['code'])) {
             $res = \Yii::$app->controller->module->authorizeToken($_GET['code']);

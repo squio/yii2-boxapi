@@ -45,7 +45,6 @@ class BoxApi extends \yii\base\Module
         }
         $this->config['user_id'] = Yii::$app->user->identity->id;
         $this->config['redirect_uri'] = $this->redirect_url();
-        $this->authenticate();
     }
 
     /**
@@ -117,8 +116,9 @@ class BoxApi extends \yii\base\Module
             $strToken = $this->http_post($url, $params);
         } catch (\yii\web\HttpException $e) {
             if ($e->statusCode !== 200) {
-                Yii::trace("Got HTTP error " . $e->statusCode . ":\n" . $e->getMessage());
+                Yii::warning("Got HTTP error " . $e->statusCode . ":\n" . $e->getMessage());
                 // TODO error handling
+                // {"error":"invalid_grant","error_description":"The authorization code has expired"}
                 // https://box-content.readme.io/docs/oauth-20
                 return false;
             }

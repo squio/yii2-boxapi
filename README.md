@@ -93,7 +93,12 @@ Once the module is installed, simply use it anywhere in your code:
 
 ```php
 // Initialize module and authenticate current logged-in user with Box
+// Throws InvalidCallException if no user is logged in
 $boxapi = \Yii::$app->getModule('boxapi');
+
+// Authenticate with Box; takes care of all of OAuth protocol and redirects
+// user as needed to ask for permissions
+$boxapi->authenticate();
 
 // Get root folder listing as nested array structure
 $boxapi->getFolderInfo('0')
