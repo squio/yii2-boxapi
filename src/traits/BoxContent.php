@@ -282,7 +282,7 @@ trait BoxContent {
         ];
         $this->curl()->setOption(CURLOPT_HTTPHEADER, $headers);
         $data = $this->curl()->get($url, []);
-		return Json::decode($data, true);
+		return ($data) ? Json::decode($data, true) : null;
 	}
 
 	protected function http_post($url, $data = '') {
@@ -293,7 +293,7 @@ trait BoxContent {
         ];
         $this->curl()->setOption(CURLOPT_HTTPHEADER, $headers);
         $data = $this->curl()->post($url, [], $data);
-		return Json::decode($data, true);
+        return ($data) ? Json::decode($data, true) : null;
 	}
 
 	protected function http_put($url, $data = '') {
@@ -304,7 +304,7 @@ trait BoxContent {
         ];
         $this->curl()->setOption(CURLOPT_HTTPHEADER, $headers);
         $data = $this->curl()->put($url, [], $data);
-		return Json::decode($data, true);
+        return ($data) ? Json::decode($data, true) : null;
 	}
 
 	protected function http_delete($url) {
