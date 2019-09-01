@@ -17,9 +17,6 @@ if ($data['path_collection'] && $data['path_collection']['entries']) {
     }
 }
 $this->params['breadcrumbs'][] = ['label' => $data['name']];
-//   <pre>
-//      <?= print_r($data, true) ?>
-//  </pre>
 ?>
 <div class="boxapi-folder-index">
    <h1><?= Html::encode($data['name']) ?></h1>
@@ -42,13 +39,12 @@ $this->params['breadcrumbs'][] = ['label' => $data['name']];
               'attribute' => 'name',
               'value' => function($model) {
                   $url = '/' . Yii::$app->controller->route;
+                  $version = null;
                   if ($model['type'] != 'folder') {
                       // turn action into download
                       $url = preg_replace('/(\/|\/index)$/', '/download', $url);
                       if (isset($model['file_version'])) {
                           $version = $model['file_version']['id'];
-                      } else {
-                          $version = null;
                       }
                   }
                   return Html::a(Html::encode($model['name']), [$url, 'id' => $model['id'], 'version' => $version]);
