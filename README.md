@@ -103,6 +103,8 @@ $boxapi->authenticate();
 // Get root folder listing as nested array structure
 $boxapi->getFolderInfo('0')
 
+// List a folder's index: open URL http://<app-name>/boxapi/folder?id=0
+
 // Download file, a specific version can be specified for Enterprise accounts
 $this->redirect($boxapi->downloadFile('12364521', $versionId = '675463234'))
 

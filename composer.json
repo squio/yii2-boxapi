@@ -3,7 +3,7 @@
     "description": "Box API 2.0 for Standard User",
     "keywords": ["box", "boxapi", "yii2"],
     "license": "MIT",
-    "type": "library",
+    "type": "yii2-extension",
     "homepage": "http://squio.nl",
     "require": {
         "php": ">=5.4",
