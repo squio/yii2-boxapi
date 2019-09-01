@@ -70,6 +70,7 @@ Folder   | getTrashedFolder($id)                  | Get    | [Get Trashed Folder
 Folder   | permanentDelete($id)                   | Delete | [Permanently Delete](https://box-content.readme.io/reference#permanently-delete-a-trashed-folder)
 Folder   | restoreFolder($id, $newName)           | Get    | [Restore Folder](https://box-content.readme.io/reference#restore-a-trashed-folder)
 File     | getFileInfo($id)                       | Get    | [Get File's Info](https://box-content.readme.io/reference#files)
+File     | getFileVersionInfo($id)                | Get    | [Get File's Version Info](https://box-content.readme.io/reference#view-versions-of-a-file)
 File     | updateFileInfo($id, $name)             | Put    | [Update File's Info](https://box-content.readme.io/reference#update-a-files-information)
 File     | toggleLock($id, $type, $expire, $down) | Put    | [Lock and Unlock](https://box-content.readme.io/reference#lock-and-unlock)
 File     | downloadFile($id)                      | Get    | [Download File](https://box-content.readme.io/reference#download-a-file)

@@ -116,6 +116,11 @@ trait BoxContent {
 		return $this->http_get($url);
 	}
 
+    /* Get details of previous versions the file */
+	public function getFileVersionInfo($file_id) {
+		$url = $this->api_url . "/files/$file_id/versions";
+		return $this->http_get($url);
+	}
 	/* Update file */
 	public function updateFileInfo($file_id, $file_name) {
 		$url = $this->api_url . "/files/$file_id";
