@@ -113,12 +113,13 @@ class BoxApi extends \yii\base\Module
         ];
 
         try {
-            $strToken = $this->http_post($url, $params);
+            $strToken = $this->http_post($url, $params, 'application/x-www-form-urlencoded');
         } catch (\yii\web\HttpException $e) {
             if ($e->statusCode !== 200) {
                 Yii::warning("Got HTTP error " . $e->statusCode . ":\n" . $e->getMessage());
                 // TODO error handling
                 // {"error":"invalid_grant","error_description":"The authorization code has expired"}
+                // {"error":"invalid_request","error_description":"Invalid grant_type parameter or parameter missing"}
                 // https://box-content.readme.io/docs/oauth-20
                 return false;
             }
@@ -141,7 +142,7 @@ class BoxApi extends \yii\base\Module
             'client_secret' => $this->config['client_secret'],
         ];
         try {
-            $strToken = $this->http_post($url, $params);
+            $strToken = $this->http_post($url, $params, 'application/x-www-form-urlencoded');
         } catch (\yii\web\HttpException $e) {
             if ($e->statusCode == 400) {
                 // [*:message] => '{\"error\":\"invalid_grant\",\"error_description\":\"Refresh token has expired\"}'
@@ -152,7 +153,14 @@ class BoxApi extends \yii\base\Module
                         // reset refresh token and redirect user to OAuth page
                         $this->redirectAuthCode();
                 }
+            } else {
+                Yii::trace("Got HTTP error " . $e->statusCode . ":\n" . $e->getMessage());
+                $this->redirectAuthCode();
             }
+        }
+        if (!isset($strToken)) {
+            Yii::trace("Got no token, calling redirectAuthCode()\n");
+            $this->redirectAuthCode();    
         }
         return $this->writeToken($strToken);
     }

@@ -182,7 +182,7 @@ trait BoxContent {
 	/* Update a file - new upload to update content of file */
 	public function updateFile($filename, $file_id) {
 		$url = $this->upload_url . '/files/$file_id/content';
-		$attributes = $attributes . " -F file=@$filename";
+		$attributes = " -F file=@$filename";
 		return $this->http_post($url, $attributes);
 	}
 
@@ -290,11 +290,11 @@ trait BoxContent {
 		return ($data) ? Json::decode($data, true) : null;
 	}
 
-	protected function http_post($url, $data = '') {
+	protected function http_post($url, $data = '', $content_type='application/json') {
         $headers = [
             $this->auth_header,
             'Accept: application/json',
-            'Content-Type: application/json',
+            'Content-Type: ' . $content_type,
         ];
         $this->curl()->setOption(CURLOPT_HTTPHEADER, $headers);
         $data = $this->curl()->post($url, [], $data);
