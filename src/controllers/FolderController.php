@@ -21,13 +21,13 @@ class FolderController extends Controller
     {
         return [
             'verbs' => [
-                'class' => VerbFilter::className(),
+                'class' => VerbFilter::class,
                 'actions' => [
                     'delete' => ['POST'],
                 ],
             ],
             'access' => [
-                'class' => AccessControl::className(),
+                'class' => AccessControl::class,
                 // 'except' => [ ], // covers all actions
                 // 'only' => ['index','week','view', 'authorize'],
                 'rules' => [
